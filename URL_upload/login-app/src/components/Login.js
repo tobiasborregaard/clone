@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 
 const Login = ({ onSuccessfulLogin }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleSubmit = () => {
-        axios.post('http://localhost:3001/login', {
-            username: username,
-            password: password
-        })
-        .then(response => {
-            if (response.data.success) {
-                console.log(response.data.message);
+    const handleSubmit = async () => {
+        setLoading(true);
+        setError(null); // Reset any previous errors
+
+        try {
+            const response = await fetch('http://localhost:3001/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await response.json();
+
+            setLoading(false); // Set loading to false when the request completes
+
+            if (data.success) {
                 onSuccessfulLogin(); // Call the callback on successful login
             } else {
-                console.log(response.data.message);
+                setError(data.message); // Set the error message from the server response
             }
-        })
-        .catch(error => {
-            console.error("Error:", error);
-        });
+        } catch (err) {
+            setLoading(false); // Set loading to false when the request completes
+            setError("An error occurred while logging in."); // Set a generic error message
+            console.error("Error:", err);
+        }
     };
 
     return (
@@ -44,6 +56,8 @@ const Login = ({ onSuccessfulLogin }) => {
                 </li>
             </ul>
                 <button onClick={handleSubmit}>Login</button>
+                {loading && <p>Loading...</p>}
+                {error && <p className="error-message">{error}</p>}
         </div>
     );
 };

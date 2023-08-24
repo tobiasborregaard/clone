@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './TopNav.css'; 
 
 function TopNav() {
@@ -6,8 +7,8 @@ function TopNav() {
         <div className="topnav">
             <div className="header">Dashboard</div>
             <div className="menu">
-                <div className="menu-option">Option 1</div>
-                <div className="menu-option">Option 2</div>
+                <Link to="/page1" className="menu-option">Option 1</Link>
+                <Link to="/page2" className="menu-option">Option 2</Link>
             </div>
         </div>
     );
