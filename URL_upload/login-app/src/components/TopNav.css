@@ -1,0 +1,18 @@
+.topnav {
+    margin: 0;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu-option {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.menu-option:hover {
+    background-color: #555;
+    color: #fff;
+}

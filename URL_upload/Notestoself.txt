@@ -1,0 +1,89 @@
+lavet indtil videre:
+
+mock server og DB
+login side 
+
+
+til næstegang:
+
+startforfra på login-app
+Auth passwords
+token recognition
+
+TODO
+
+Secure URL-Based Login System with Email Authorization Todo List
+User Registration
+ Implement user registration functionality.
+ Send confirmation email upon registration.
+
+URL Generation:
+ Generate a unique and secure token for each login request.
+ Append the token to a base URL to create the unique login URL.
+
+URL Distribution:
+ Allow users to request a login URL by entering their registered email.
+ Send the unique login URL to the user's registered email.
+
+Email Authorization:
+ Send an authorization email to a specified email address upon user's login request.
+ Include a link in the email for approving or denying the user's login request.
+
+URL-Based Login with Authorization:
+ Allow users to log in by clicking on the unique URL from their email.
+ Validate the token against the MySQL database.
+ Redirect authorized users to the product upload page upon successful validation.
+
+Token Expiration:
+ Implement token expiration mechanism.
+ Allow administrators to set the expiration time for tokens.
+
+Security:
+ Implement HTTPS for data security during transit.
+ Use strong and complex tokens to prevent brute-force attacks.
+ Ensure the MySQL database is secured with best practices.
+
+Performance:
+ Optimize the system for quick URL generation, validation, and redirection.
+
+Usability:
+ Ensure the system is user-friendly with clear instructions and error messages.
+
+Reliability:
+ Ensure high uptime and consistent performance of the system.
+Product Upload Page Requirement Specification Todo List
+
+EPD Upload:
+ Enable users to upload EPD files.
+ Scan uploaded files for viruses before processing.
+ Utilize an AI API to scrape product names from EPD files.
+ Provide users with a choice of product names extracted from EPD.
+
+Product Management:
+ Display a list of uploaded products for users.
+ Allow users to remove listed products.
+ Enable users to upload additional technical specifications for EPDs.
+
+Product Creation:
+ Create an intuitive interface for creating new EPDs.
+ Allow users to select product categories from a predefined list.
+
+Data Integrity:
+ Implement a temporary database to store user progress during interruptions.
+ Restore user progress from the temporary database when they return.
+
+Security:
+ Scan all uploaded files for viruses to ensure data security.
+ Protect user data and prevent unauthorized access.
+
+Performance:
+ Optimize the system for fast file uploads and data retrieval.
+ Ensure the AI API used for scraping provides accurate and quick results.
+
+Usability:
+ Build a user-friendly interface using React.js for a seamless experience.
+ Provide clear instructions and error messages to guide users.
+
+Reliability:
+ Ensure high uptime and reliable performance of the system.
+ Guarantee the temporary database can store and restore user progress.

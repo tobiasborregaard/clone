@@ -1,0 +1,124 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "password": "password_for_user_1",
+            "hashed_password": "$2b$12$Oma6h566N748lsq1NBc8zuUD/84jUWdPVxjrM3naz6zA/07EhjWka",
+            "username": "Company_1"
+        },
+        {
+            "id": 2,
+            "password": "password_for_user_2",
+            "hashed_password": "$2b$12$DF6k9Nw1HG/oEFnWwfAz/.9I.DkySRR.7F.ozujcIRhK4KomgvnhS",
+            "username": "Company_2"
+        },
+        {
+            "id": 3,
+            "password": "password_for_user_3",
+            "hashed_password": "$2b$12$Px3tC2CgM5g4.PMj2RLweeLJV4sC8FIimq/O2T2vvxymVP4p5Sn2m",
+            "username": "Company_3"
+        },
+        {
+            "id": 4,
+            "password": "password_for_user_4",
+            "hashed_password": "$2b$12$eM8SqeaWbxCHLB5zVHpxt.DQhk0DHHVqCI9fjZeuEUnxuuez/F5J.",
+            "username": "Company_4"
+        },
+        {
+            "id": 5,
+            "password": "password_for_user_5",
+            "hashed_password": "$2b$12$W9ddBL8w0G8ZdgzFyDRItugTN1FGUt4oC38YNHdWMeeXn0QHQM59q",
+            "username": "Company_5"
+        },
+        {
+            "id": 6,
+            "password": "password_for_user_6",
+            "hashed_password": "$2b$12$Yr7aDOiTsp.rkeXSEkcxu.kVsL4umn8ljtQgSIUbVV40dSjv0Dmfq",
+            "username": "Company_6"
+        },
+        {
+            "id": 7,
+            "password": "password_for_user_7",
+            "hashed_password": "$2b$12$dilBrdvp/1jO4HKr/sQgHOm17n0Kg.xL9gfZ2WIxqkmsGSChCQdCi",
+            "username": "Company_7"
+        },
+        {
+            "id": 8,
+            "password": "password_for_user_8",
+            "hashed_password": "$2b$12$887A8rB3FyaRabAhYPxxsOZF2lJH0sg2zQ4ihOQzqLPJzNFcrQ/je",
+            "username": "Company_8"
+        },
+        {
+            "id": 9,
+            "password": "password_for_user_9",
+            "hashed_password": "$2b$12$GnVyC/dbx3nbo7opTlx./.8ne/y9KXAwmkwK6RINYxQjdawC6Nz8y",
+            "username": "Company_9"
+        },
+        {
+            "id": 10,
+            "password": "password_for_user_10",
+            "hashed_password": "$2b$12$y9/A01IaDSpyj2jBrXpnu.n57jIXD.CVWIQeJ0oPK7jysU6SzsRJe",
+            "username": "Company_10"
+        },
+        {
+            "id": 11,
+            "password": "password_for_user_11",
+            "hashed_password": "$2b$12$DM8ZY5dNIrNOGuC3jdc24O5OKZxz42PuJhd9VACdkUbronxKkenGe",
+            "username": "Company_11"
+        },
+        {
+            "id": 12,
+            "password": "password_for_user_12",
+            "hashed_password": "$2b$12$vWrAMYH.xgBy.4YX.gBOS.gUU7iOMe1syO1bZ1kLuL1c8qjbIAUs2",
+            "username": "Company_12"
+        },
+        {
+            "id": 13,
+            "password": "password_for_user_13",
+            "hashed_password": "$2b$12$D7.AIfRQXzDSD8PgloRo7.yy9HRHwKpy/fsAUaGL909KhEDCc2/oi",
+            "username": "Company_13"
+        },
+        {
+            "id": 14,
+            "password": "password_for_user_14",
+            "hashed_password": "$2b$12$rqU5Nz9NfxQUn7HMUe1Ndugu9ySIdZvWjMrA4cZBAf7l.A50mjrmu",
+            "username": "Company_14"
+        },
+        {
+            "id": 15,
+            "password": "password_for_user_15",
+            "hashed_password": "$2b$12$n9iRvAQFEkgQQaJlPRRpFe7lfeZdi9N5hYmkXr.YTECm8wo8APtOW",
+            "username": "Company_15"
+        },
+        {
+            "id": 16,
+            "password": "password_for_user_16",
+            "hashed_password": "$2b$12$o39w.QbZkXR8VgqGYGkpwu3zd6HTzU9HRvS/1dgyJSRju7n5VfsMm",
+            "username": "Company_16"
+        },
+        {
+            "id": 17,
+            "password": "password_for_user_17",
+            "hashed_password": "$2b$12$0ZUaKrak9Z2QL5.9xQLlJuDj00Fa/e94kkxU6w5TB2r1wsUDusEU.",
+            "username": "Company_17"
+        },
+        {
+            "id": 18,
+            "password": "password_for_user_18",
+            "hashed_password": "$2b$12$dt8xhjpar0MFUxweCwuSSeKYTKMFkrktpMKJX.6ALNwPe3hQo6D2i",
+            "username": "Company_18"
+        },
+        {
+            "id": 19,
+            "password": "password_for_user_19",
+            "hashed_password": "$2b$12$PBs53dbVB8F45ayxFLiPJ.TBhy8zwT1L3/l3iB7p7wpR97wZMFJYG",
+            "username": "Company_19"
+        },
+        {
+            "id": 20,
+            "password": "password_for_user_20",
+            "hashed_password": "$2b$12$.kKXc.m/Vrbsex15EL.8Xen8CA/2a4aErN5pH8FrB6JE5EKkw1Z8.",
+            "username": "Company_20"
+        }
+    ]
+}

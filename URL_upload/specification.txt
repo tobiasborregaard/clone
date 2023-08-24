@@ -1,0 +1,156 @@
+Secure URL-Based Login System with Email Authorization Requirement Specification
+1. Introduction
+1.1 Purpose
+
+This document specifies the requirements for a Secure URL-Based Login System with Email Authorization. The system will allow users to log in using a unique URL, but access will only be granted after authorization via an email link sent to a specified email address.
+
+1.2 Scope
+
+The system will generate a unique URL for users, which they can use to request login. An email will be sent to a specified email address for authorization. Once authorized, the user will be redirected to the company's specific product upload page.
+
+2. Functional Requirements
+2.1 User Registration
+
+Users should be able to register using their email address.
+Upon registration, users should receive a confirmation email.
+2.2 URL Generation
+
+The system should generate a unique and cryptographically secure token for each login request.
+The token should be appended to a base URL to create the unique login URL.
+2.3 URL Distribution
+
+Users should request a login URL by entering their registered email address.
+The system should send the unique URL to the user's registered email address.
+2.4 Email Authorization
+
+Upon a user's login request, an authorization email should be sent to a specified email address (e.g., an administrator or manager).
+The authorization email should contain a link to approve or deny the user's login request.
+Once approved, the user should be notified and allowed to log in using the unique URL.
+2.5 URL-Based Login with Authorization
+
+Users should be able to log in by clicking on the unique URL sent to their email, but only after the authorization is granted.
+The system should validate the token against the MySQL database.
+If the token is valid, authorized, and hasn't expired, the user should be redirected to the company's specific product upload page.
+2.6 Token Expiration
+
+Tokens should have an expiration time, after which they cannot be used for login.
+The system should allow administrators to set the expiration time.
+3. Non-Functional Requirements
+3.1 Security
+
+The system should use HTTPS to ensure the security of data in transit.
+Tokens should be long and complex to prevent brute-force attacks.
+The MySQL database should be secured with best practices, including regular backups, strong passwords, and restricted access.
+3.2 Performance
+
+The system should be optimized for performance, ensuring quick URL generation, validation, and redirection.
+3.3 Usability
+
+The system should be user-friendly, with clear instructions and error messages.
+3.4 Reliability
+
+The system should be reliable, ensuring high uptime and consistent performance.
+4. Use Cases
+4.1 User Registration
+
+User accesses the registration page.
+User enters their email address and submits.
+System sends a confirmation email to the user.
+User confirms their email address.
+4.2 Requesting a Login URL
+
+User accesses the login page.
+User enters their registered email address.
+System generates a unique URL and sends it to the user's email.
+An authorization email is sent to the specified email address.
+4.3 Email Authorization
+
+The authorized person receives the authorization email.
+They click on the link to approve or deny the user's login request.
+The system updates the authorization status in the MySQL database.
+4.4 Logging in with Authorized URL
+
+User clicks on the unique URL in their email.
+System checks the token's validity and authorization status in the MySQL database.
+If valid and authorized, the user is redirected to the company's product upload page.
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+Product Upload Page Requirement Specification
+1. Introduction
+1.1 Purpose
+
+This document specifies the requirements for a Product Upload Page, allowing users to upload Environmental Product Declarations (EPDs) and manage their listed products.
+
+1.2 Scope
+
+The system will provide functionalities for uploading EPDs, scraping product names using an AI API, managing existing products, and ensuring data integrity and security.
+
+2. Functional Requirements
+2.1 EPD Upload
+
+Users should be able to upload EPD files.
+The system should check the uploaded files for viruses before processing.
+Once verified, the system should use an AI API to scrape the EPD for product names.
+Users should be presented with a choice of product names extracted from the EPD.
+2.2 Product Management
+
+Users should be able to view a list of their already uploaded products.
+Users should have the option to remove any of their listed products.
+Users should be able to upload additional technical specifications for each EPD.
+2.3 Product Creation
+
+The system should provide an easy-to-use interface for creating additional EPDs.
+Users should be able to select product categories from a predefined list.
+2.4 Data Integrity
+
+The system should use a temporary database to ensure that users don't lose progress if there's an interruption.
+When users return to the page, their progress should be restored from the temporary database.
+3. Non-Functional Requirements
+3.1 Security
+
+The system should ensure that all uploaded files are scanned for viruses before processing.
+User data should be protected, and unauthorized access should be prevented.
+3.2 Performance
+
+The system should be optimized for quick file uploads and data retrieval.
+The AI API used for scraping should provide accurate and fast results.
+3.3 Usability
+
+The interface should be user-friendly, built using React.js for a seamless user experience.
+Clear instructions and error messages should guide users through the upload and management process.
+3.4 Reliability
+
+The system should ensure high uptime and consistent performance.
+The temporary database should reliably store user progress and restore it when needed.
+4. Use Cases
+4.1 Uploading an EPD
+
+User accesses the product upload page.
+User selects and uploads an EPD file.
+System scans the file for viruses.
+System uses the AI API to scrape product names from the EPD.
+User is presented with a choice of product names and selects one.
+4.2 Managing Existing Products
+
+User accesses the product management page.
+User views a list of their uploaded products.
+User selects a product and chooses to remove it or upload additional specifications.
+4.3 Creating Additional EPDs
+
+User accesses the EPD creation interface.
+User fills in the required details and selects a category from the list.
+User submits the new EPD.
+4.4 Restoring Progress
+
+User accesses the product upload page after an interruption.
+System retrieves the user's progress from the temporary database.
+User continues from where they left off.
+This specification provides a comprehensive overview of the product upload page's functionalities. It's essential to involve all stakeholders, including technical experts, during the development process to ensure the system meets the specified requirements and is built using the desired tech stack (React.js and MySQL).
