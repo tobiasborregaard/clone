@@ -1,72 +1,18 @@
-import React, { useState } from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
-import UploadBox from './Uploadbox.js';  // Adjust the path as needed
-import './dashboard.css'; // Import your CSS file
-import ProductList from './ProductList'; 
-import TopNav from './TopNav.js'; // Import the TopNav component
+// Dashboard.js
+
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import UploadSite from './Uploadsite.js';
+import ProductList from './ProductList.js';
+import TopNav from './TopNav.js'
 
 function Dashboard() {
-    const [uploadedFiles, setUploadedFiles] = useState([]);
-    const [showUploadBox, setShowUploadBox] = useState(false);
-    const categories = ["Category1", "Category2", "Category3"];  // Example categories
-
-    const handleFileUpload = (event) => {
-        const files = Array.from(event.target.files || event.dataTransfer.files);
-        setUploadedFiles([...uploadedFiles, ...files]);
-        setShowUploadBox(true);  // Show the UploadBox when a file is uploaded
-    };
-    
-    
-
-    const handleTechnicalUpload = (event) => {
-        // Handle the technical PDF upload here
-        // For now, we'll just console log the uploaded technical file
-        console.log(event.target.files[0]);
-    };
-
     return (
-        <div className="dashboard">
-            <TopNav />
-            <Switch>
-                <Route exact path="/dashboard">
-                    {!showUploadBox && (
-                        <div
-                            className="upload-area"
-                            onDrop={(e) => {
-                                e.preventDefault();
-                                handleFileUpload(e);
-                            }}
-                            onDragOver={(e) => e.preventDefault()}
-                        >
-                            <span className="upload-text">Drag & Drop Files Here</span>
-                            <input
-                                type="file"
-                                multiple
-                                style={{ display: 'none' }}
-                                onChange={handleFileUpload}
-                            />
-                        </div>
-                    )}
-        
-                    <div className="uploaded-items">
-                        {uploadedFiles.map((file, index) => (
-                            <div key={index} className="uploaded-item">
-                                {file.name}
-                            </div>
-                        ))}
-                    </div>
-        
-                    {showUploadBox && (
-                        <UploadBox
-                            pdfFile={uploadedFiles[uploadedFiles.length - 1]}
-                            categories={categories}
-                            onTechnicalUpload={handleTechnicalUpload}
-                        />
-                    )}
-                </Route>
-                <Route path="/dashboard/products" component={ProductList} />
-            </Switch>
-        </div>
+        <TopNav/>
+            <Routes>
+                <Route path="/dashboard" element={<UploadSite />} />
+                <Route path="/dashboard/products" element={<ProductList />} />
+            </Routes>
     );
 }
 
