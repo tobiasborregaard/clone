@@ -1,104 +1,96 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './Uploadbox.css';  // Import the CSS
-import pdfjs from 'pdfjs-dist';
+import React, { useState } from 'react';
 
-function UploadBox({ pdfFile, categories, onTechnicalUpload, onSave }) {
-    const [buttonState, setButtonState] = useState('unsaved');
-    const [isTechDragOver, setIsTechDragOver] = useState(false);  // Renamed to isTechDragOver
-    const [uploadedFiles, setUploadedFiles] = useState([]);
-    const pdfPreviewRef = useRef(null);
-    const handleSaveClick = async () => {
-        if (buttonState === 'unsaved') {
-            await onSave();  // Assuming onSave is a promise
-            setButtonState('saved');
-            setTimeout(() => setButtonState('edit'), 500);
+function UploadBox({ pdfFile, onClose }) {
+    const [additionalPdfs, setAdditionalPdfs] = useState([]);
+    const [categories, setCategories] = useState([
+        { id: 1, name: "Category1", checked: false },
+        { id: 2, name: "Category2", checked: false },
+    ]);
+
+    const handleCategoryChange = (id) => {
+        setCategories(prev => 
+            prev.map(cat => cat.id === id ? {...cat, checked: !cat.checked} : cat)
+        );
+    };
+
+    const handleAdditionalPDFs = (event) => {
+        const files = Array.from(event.target.files);
+        setAdditionalPdfs(prev => [...prev, ...files]);
+    };
+
+    const handleClickOutside = (event) => {
+        if (event.target.id === "modalBackground") {
+            onClose();
         }
     };
 
-    useEffect(() => {
-        if (pdfFile) {
-            const reader = new FileReader();
-            reader.onload = async (event) => {
-                const pdf = await pdfjs.getDocument(event.target.result).promise;
-                const page = await pdf.getPage(1);
-                const canvas = pdfPreviewRef.current;
-                const context = canvas.getContext('2d');
-                const viewport = page.getViewport({ scale: 1 });
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-                page.render({ canvasContext: context, viewport: viewport });
-            };
-            reader.readAsArrayBuffer(pdfFile);
-        }
-    }, [pdfFile]);
-
-    const handleFileUpload = (event) => {
-        const files = event.target.files;
-        // Process the uploaded files here
-        setUploadedFiles([...uploadedFiles, ...files]);
+    // Inline Styles
+    const backgroundStyle = {
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.3)',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1000,
     };
 
-    const renderButtonContent = () => {
-        switch (buttonState) {
-            case 'unsaved':
-                return 'Save';
-            case 'saved':
-                return '✔️';  // Checkmark
-            case 'edit':
-                return 'Edit';
-            default:
-                return 'Save';
-        }
+    const modalStyle = {
+        width: '60%',
+        padding: '20px',
+        backgroundColor: 'white',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        border: '1px solid #ccc',
+        borderRadius: '10px'
+    };
+
+    const contentStyle = {
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: '100%',
+        marginBottom: '20px'
     };
 
     return (
-        <div className="uploadbox">
-            <div className="section-container">
-                <h3 className="section-header">PDF Preview</h3>
-                <div className="pdf-preview">
-                    <canvas ref={pdfPreviewRef}></canvas>
-                    <div>{pdfFile?.name}</div>
+        <div style={backgroundStyle} onClick={handleClickOutside} id="modalBackground">
+            <div style={modalStyle}>
+                <h2>{pdfFile.name}</h2>
+
+                <div style={contentStyle}>
+                    {/* Category Selection */}
+                    <div>
+                        {categories.map(category => (
+                            <label key={category.id}>
+                                <input 
+                                    type="checkbox" 
+                                    checked={category.checked} 
+                                    onChange={() => handleCategoryChange(category.id)}
+                                />
+                                {category.name}
+                            </label>
+                        ))}
+                    </div>
+
+                    {/* Additional PDF Upload and List */}
+                    <div>
+                        <input type="file" multiple onChange={handleAdditionalPDFs} />
+                        {additionalPdfs.map((file, index) => (
+                            <p key={index}>{file.name}</p>
+                        ))}
+                    </div>
                 </div>
-            </div>
-    
-            <div className="section-container">
-                <h3 className="section-header">Categories</h3>
-                <div className="categories">
-                    {categories.map((category, index) => (
-                        <div key={index}>
-                            <input type="checkbox" id={`cat-${index}`} />
-                            <label htmlFor={`cat-${index}`}>{category}</label>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            
-            <div className="section-container">
-                <h3 className="section-header">Technical Information</h3>
-                <div 
-                    className={`technical-upload ${isTechDragOver ? 'dragover' : ''}`}
-                    onDragEnter={() => setIsTechDragOver(true)}
-                    onDragLeave={() => setIsTechDragOver(false)}
-                    onDrop={() => setIsTechDragOver(false)}
-                >
-                    <input type="file" accept=".pdf" onChange={handleFileUpload} />
-                    {uploadedFiles.length === 0 && <span className="upload-text">Upload Technical Information</span>}
-                    {uploadedFiles.length > 0 && uploadedFiles.map((file, index) => (
-                        <div key={index}>{file.name}</div>
-                    ))}
-                </div>
-            </div>
-    
-            <div className="section-container">
-                <h3 className="section-header">Actions</h3>
-                <div className="save-section">
-                    <button onClick={handleSaveClick}>
-                        {renderButtonContent()}
-                    </button>
-                </div>
+
+                {/* Submit Button */}
+                <button>Submit</button>
             </div>
         </div>
     );
-}  // <-- This closing brace was misplaced
+}
 
 export default UploadBox;

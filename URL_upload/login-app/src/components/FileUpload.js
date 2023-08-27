@@ -5,22 +5,19 @@ function FileUpload() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const [showUploadBox, setShowUploadBox] = useState(false);
     const [hoverUploadArea, setHoverUploadArea] = useState(false); // New state for hover effect
-    const categories = ["Category1", "Category2", "Category3"];
 
     const handleFileUpload = (event) => {
         const files = Array.from(event.target.files || event.dataTransfer.files);
         setUploadedFiles([...uploadedFiles, ...files]);
         setShowUploadBox(true);
     };
-
-    const handleTechnicalUpload = (event) => {
-        console.log(event.target.files[0]);
+    const handleClose = () => {
+        setShowUploadBox(false);
     };
-
     // Inline styles
     const uploadAreaStyle = {
-        width: '80%',
-        height: '50%',
+        width: '50%',
+        height: '20%',
         border: '2px dashed #ccc',
         color: '#fff',
         display: 'flex',
@@ -29,28 +26,19 @@ function FileUpload() {
         marginTop: '20px',
         cursor: 'pointer',
         transition: 'background-color 0.3s',
-        backgroundColor: hoverUploadArea ? '#555' : 'transparent' // Conditional styling based on hover state
+        backgroundColor: hoverUploadArea ? '#555' : 'transparent'
     };
 
-    const uploadedItemsStyle = {
-        width: '80%',
-        display: 'flex',
-        flexWrap: 'wrap',
-        gap: '20px',
-        marginTop: '20px'
-    };
-
-    const uploadedItemStyle = {
-        width: '150px',
-        height: '200px',
-        border: '1px solid #ccc',
+    const containerStyle = {
+        width: '100vw',
+        height: '100vh',
+        margin: '0 auto',
         display: 'flex',
         justifyContent: 'center',
-        alignItems: 'center'
     };
 
     return (
-        <div className="fileupload">
+        <div style={containerStyle}>
             {!showUploadBox && (
                 <div
                     style={uploadAreaStyle}
@@ -59,8 +47,8 @@ function FileUpload() {
                         handleFileUpload(e);
                     }}
                     onDragOver={(e) => e.preventDefault()}
-                    onMouseEnter={() => setHoverUploadArea(true)} // Handle hover effect
-                    onMouseLeave={() => setHoverUploadArea(false)} // Handle hover effect
+                    onMouseEnter={() => setHoverUploadArea(true)}
+                    onMouseLeave={() => setHoverUploadArea(false)}
                 >
                     <span>Drag & Drop Files Here</span>
                     <input
@@ -71,21 +59,9 @@ function FileUpload() {
                     />
                 </div>
             )}
-    
-            <div style={uploadedItemsStyle}>
-                {uploadedFiles.map((file, index) => (
-                    <div key={index} style={uploadedItemStyle}>
-                        {file.name}
-                    </div>
-                ))}
-            </div>
-    
+            
             {showUploadBox && (
-                <UploadBox
-                    pdfFile={uploadedFiles[uploadedFiles.length - 1]}
-                    categories={categories}
-                    onTechnicalUpload={handleTechnicalUpload}
-                />
+                <UploadBox pdfFile={uploadedFiles[uploadedFiles.length - 1]} />
             )}
         </div>
     );

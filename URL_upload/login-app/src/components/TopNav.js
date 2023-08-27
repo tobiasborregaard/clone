@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 function TopNav() {
-    const [hoverIndex, setHoverIndex] = useState(null); // This state will store the index of the hovered item
+    const [hoverIndex, setHoverIndex] = useState(null);
 
     const topNavStyle = {
-        margin: 'auto',
-        width: '100%',
-        paddingTop: "2%",
-    paddingBottom: "2%",
-        
+        margin: '0',
+        width: '100vw',
+        paddingTop: "1%",
+        paddingBottom: "1%",
+        boxSizing: 'border-box', // Make sure width includes padding and borders
     };
 
     const menuStyle = {
@@ -17,16 +17,17 @@ function TopNav() {
         justifyContent: 'center',
         alignItems: 'center',
         listStyle: 'none',
-        
+        boxSizing: 'border-box', // Make sure width includes padding and borders
     };
 
     const menuOptionStyle = {
-        padding: '2% 3%',
+        padding: '1% 1%',
         cursor: 'pointer',
         textDecoration: 'none',
         backgroundColor: 'white',
         color: 'black',
-        transition: 'background-color 0.3s, color 0.3s', // Added color transition
+        transition: 'background-color 0.3s, color 0.3s',
+        boxSizing: 'border-box', // Make sure width includes padding and borders
     };
 
     const menuOptionHoverStyle = {
@@ -43,7 +44,7 @@ function TopNav() {
         <ul style={topNavStyle}>
             <div style={menuStyle}>
                 {links.map((link, index) => (
-                    <li key={index}>
+                    <li key={index} style={{boxSizing: 'border-box'}}>  {/* Apply box-sizing to li as well */}
                         <Link 
                             to={link.path} 
                             style={hoverIndex === index ? { ...menuOptionStyle, ...menuOptionHoverStyle } : menuOptionStyle}
