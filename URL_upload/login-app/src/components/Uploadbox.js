@@ -23,6 +23,9 @@ function UploadBox({ pdfFile, onClose }) {
             onClose();
         }
     };
+    if (!pdfFile) {
+        return null;  // or render some default content or error message
+    }
 
     // Inline Styles
     const backgroundStyle = {
@@ -60,7 +63,8 @@ function UploadBox({ pdfFile, onClose }) {
     return (
         <div style={backgroundStyle} onClick={handleClickOutside} id="modalBackground">
             <div style={modalStyle}>
-                <h2>{pdfFile.name}</h2>
+            <h2>{pdfFile && pdfFile.name}</h2>
+
 
                 <div style={contentStyle}>
                     {/* Category Selection */}

@@ -8,13 +8,15 @@ import Footer from './Footer';
 function Dashboard() {
     // Define the inline styles
     const dashboardStyle = {
+        display: 'flex',
+        flexDirection: 'column',  // Stack children vertically
+        minHeight: '100vh',  // Minimum height to take up full viewport height
         backgroundColor: '#3C3C3C',
         color: '#3C3C3C',
-        height: 'fit-content',
         width: '100vw',
-        display: 'flex',
         justifyContent: 'center',
-        textAlign: 'center'
+        textAlign: 'center',
+        overflowX: 'hidden',
     };
 
     return (
@@ -22,7 +24,7 @@ function Dashboard() {
 
         <Router>
             <TopNav />
-            <div className="dashboard" style={dashboardStyle}>
+            <div className="dashboard" style={{ ...dashboardStyle, flexGrow: 1 }}>
                 <Routes>
                     <Route exact path="/" element={<FileUpload />} />
                     <Route path="/mydata" element={<FileData />} />  

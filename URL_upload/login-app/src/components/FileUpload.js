@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import UploadBox from './Uploadbox.js';
+import UploadedFilesGrid from './UploadedFilesGrid.js';
 
 function FileUpload() {
     const [uploadedFiles, setUploadedFiles] = useState([]);
     const [showUploadBox, setShowUploadBox] = useState(false);
     const [hoverUploadArea, setHoverUploadArea] = useState(false); // New state for hover effect
+    const [selectedFile, setSelectedFile] = useState(null);
 
     const handleFileUpload = (event) => {
         const files = Array.from(event.target.files || event.dataTransfer.files);
@@ -13,6 +15,11 @@ function FileUpload() {
     };
     const handleClose = () => {
         setShowUploadBox(false);
+    };
+
+    const handleFileClick = (file) => {
+        setSelectedFile(file);
+        setShowUploadBox(true);
     };
     // Inline styles
     const uploadAreaStyle = {
@@ -23,7 +30,7 @@ function FileUpload() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '20px',
+        
         cursor: 'pointer',
         transition: 'background-color 0.3s',
         backgroundColor: hoverUploadArea ? '#555' : 'transparent'
@@ -34,9 +41,12 @@ function FileUpload() {
         height: '100vh',
         margin: '0 auto',
         display: 'flex',
+        flexDirection: 'column',   // <-- This will stack children vertically
         justifyContent: 'center',
+        alignItems: 'center'       // <-- This will center the children horizontally
     };
 
+   
     return (
         <div style={containerStyle}>
             {!showUploadBox && (
@@ -60,9 +70,16 @@ function FileUpload() {
                 </div>
             )}
             
+            {showUploadBox && uploadedFiles.length > 0 && (
+                    <UploadBox pdfFile={uploadedFiles[uploadedFiles.length - 1]} onClose={handleClose} />
+                )}
+            <div>
+                
+            <UploadedFilesGrid files={uploadedFiles} onFileClick={handleFileClick} />
             {showUploadBox && (
-                <UploadBox pdfFile={uploadedFiles[uploadedFiles.length - 1]} />
+                <UploadBox pdfFile={selectedFile} onClose={handleClose} />
             )}
+            </div>
         </div>
     );
 }

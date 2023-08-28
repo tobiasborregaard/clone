@@ -3,10 +3,11 @@ import React from 'react';
 function Footer() {
     // Inline styles for the footer and its items
     const footerStyle = {
-        backgroundColor: '#333',  // Change this to match your site's theme
+        backgroundColor: '#333',  
         color: '#fff',
         padding: '20px 0',
-        position: 'absolute',
+        marginTop: 'auto',
+
         bottom: '0',
         width: '100vw',
         display: 'flex',  // Use flexbox for layout
