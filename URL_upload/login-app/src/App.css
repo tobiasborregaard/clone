@@ -1,6 +1,6 @@
 .App {
   margin: 0;
-  height: 100vh;  /* Viewport height */
+  height: 80vh;  /* Viewport height */
   display: flex;
   justify-content: center;  /* Center horizontally */
   text-align: center;

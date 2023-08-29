@@ -27,6 +27,8 @@ function UploadBox({ pdfFile, onClose }) {
         return null;  // or render some default content or error message
     }
 
+   
+
     // Inline Styles
     const backgroundStyle = {
         position: 'fixed',

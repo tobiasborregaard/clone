@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Footer from './Footer';
+import Footer from '../Topnav and footer/Footer.js';
 
 
 const Login = ({ onSuccessfulLogin }) => {
@@ -73,7 +73,7 @@ const Login = ({ onSuccessfulLogin }) => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh',
+        height: '90vh',
         width: '100vw'
     };
     
@@ -85,6 +85,8 @@ const Login = ({ onSuccessfulLogin }) => {
     };
 
     return (
+        <div>
+
             <div style={wrapperStyle}>
                 <img src={logoImage} alt="Logo" style={logoStyle} />
                 <div style={loginContainerStyle}>
@@ -97,7 +99,7 @@ const Login = ({ onSuccessfulLogin }) => {
                                         value={username}
                                         onChange={(e) => setUsername(e.target.value)}
                                         style={inputStyle}
-                                    />
+                                        />
                                 </li>
                                 <li style={listItemStyle}>
                                     <input
@@ -106,7 +108,7 @@ const Login = ({ onSuccessfulLogin }) => {
                                         value={password}
                                         onChange={(e) => setPassword(e.target.value)}
                                         style={inputStyle}
-                                    />
+                                        />
                                 </li>
                             </ul>
                             <button onClick={handleSubmit} style={buttonStyle}>Login</button>
@@ -114,8 +116,9 @@ const Login = ({ onSuccessfulLogin }) => {
                             {error && <p className="error-message">{error}</p>}
                         </div>
                 </div>
-                <Footer />
             </div>
+                <Footer />
+        </div>
         );
 };
 
